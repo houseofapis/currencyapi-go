@@ -1,4 +1,4 @@
-package currencyapinet
+package currencyapi
 
 import (
 	"fmt"

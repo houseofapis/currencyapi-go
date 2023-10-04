@@ -3,11 +3,11 @@ package main
 import (
 	"fmt"
 	"log"
-	"currencyapinet"
+	"github.com/houseofapis/currencyapi"
 )
 
 func main() {
-	client := currencyapinet.Client("PY9VM5DrVNptjWjQ2dXGp3sgQI61W7jmTiex")
+	client := currencyapi.Client("PY9VM5DrVNptjWjQ2dXGp3sgQI61W7jmTiex")
 
 	ratesParams := map[string]string{
 		"output": "XML",
