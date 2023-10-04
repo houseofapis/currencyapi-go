@@ -1,6 +1,6 @@
 # CurrencyApi Golang wrapper 
 
-[![PyPI version](https://badge.fury.io/go/currencyapi.svg)](https://pkg.go.dev/github.com/houseofapis/currencyapi) [![Coverage Status](https://coveralls.io/repos/github/houseofapis/currencyapi-go/badge.svg?branch=main)](https://coveralls.io/github/houseofapis/currencyapi-go?branch=main) 
+[![Go project version](https://badge.fury.io/go/github.com%2Fhouseofapis%2Fcurrencyapi-go.svg)](https://badge.fury.io/go/github.com%2Fhouseofapis%2Fcurrencyapi-go) [![Coverage Status](https://coveralls.io/repos/github/houseofapis/currencyapi-go/badge.svg?branch=main)](https://coveralls.io/github/houseofapis/currencyapi-go?branch=main) 
 
 <a href="https://currencyapi.net" title="CurrencyApi">CurrencyApi.net</a> provides live currency rates via a REST API. A live currency feed for over 152 currencies, including physical (USD, GBP, EUR + more) and cryptos (Bitcoin, Litecoin, Ethereum + more). A JSON and XML currency api updated every 60 seconds. 
 
