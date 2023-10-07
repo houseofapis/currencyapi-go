@@ -32,14 +32,14 @@ Golang wrapper for <a href="https://currencyapi.net" title="CurrencyApi">Currenc
 ## Installation
 
 ```bash
-go get github.com/houseofapis/currencyapi
+go get github.com/houseofapis/currencyapi-go
 ```
 then import the package with:
 
 ```golang
 import (
     ...
-	"github.com/houseofapis/currencyapi"
+	"github.com/houseofapis/currencyapi-go"
 	...
 )
 ```

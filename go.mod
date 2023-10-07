@@ -1,4 +1,4 @@
-module github.com/houseofapis/currencyapi
+module github.com/houseofapis/currencyapi-go
 
 go 1.21.1
 

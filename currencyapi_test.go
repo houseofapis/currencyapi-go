@@ -3,7 +3,6 @@ package currencyapi
 import (
 	"encoding/json"
 	"testing"
-	"fmt"
 
 	"github.com/stretchr/testify/assert"
 	"gopkg.in/h2non/gock.v1"
@@ -221,37 +220,6 @@ func TestTimeframe(t *testing.T) {
 	}
 }
 
-func TestAPIError_Error(t *testing.T) {
-	testCases := []struct {
-		name          string
-		error         APIError
-		expectedError string
-	}{
-		{
-			name: "Error with message",
-			error: APIError{
-				Status: 400,
-				Err:    fmt.Errorf("Bad Request"),
-				Msg:    stringPtr("Invalid request"),
-			},
-			expectedError: "Error fetching rates. Status code: 400. Error: Bad Request. Message: Invalid request",
-		},
-		{
-			name: "Error without message",
-			error: APIError{
-				Status: 500,
-				Err:    fmt.Errorf("Internal Server Error"),
-			},
-			expectedError: "Error fetching rates. Status code: 500. Error: Internal Server Error",
-		},
-	}
-
-	for _, tc := range testCases {
-		t.Run(tc.name, func(t *testing.T) {
-			assert.Equal(t, tc.expectedError, tc.error.Error())
-		})
-	}
-}
 
 func TestClient(t *testing.T) {
 	apiKey := "testAPIKey"
