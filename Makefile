@@ -16,7 +16,7 @@ test: ## Run the tests
 	${DOCKER_COMMAND} go test
 
 run: ## Run test file
-	${DOCKER_COMMAND} go run myapp/main.go
+	${DOCKER_COMMAND} go run example/main.go
 
 help:
 	@grep -h -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'

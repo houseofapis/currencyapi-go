@@ -15,9 +15,15 @@ Features:
 
 Signup for a free or paid account <a href="https://currencyapi.net/#pricing-sec" title="currency-api-pricing">here</a>.
 
-## This package
+## This package is a:
 
 Golang wrapper for <a href="https://currencyapi.net" title="CurrencyApi">CurrencyApi.net</a> endpoints.
+
+## Developer Guide
+
+For an easy to following developer guide, check out our [Golang Developer Guide](https://currencyapi.net/sdk/golang).
+
+Alternatively keep reading below.
 
 #### Prerequisites
 
