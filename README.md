@@ -27,8 +27,8 @@ Alternatively keep reading below.
 
 #### Prerequisites
 
-- Minimum Go 1.13
-- Working on Go 1.21
+- Minimum Go 1.21
+- Working on Go 1.26
 - Free or Paid account with CurrencyApi.net
 
 #### Test Coverage

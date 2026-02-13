@@ -2,8 +2,8 @@ package currencyapi
 
 import (
 	"fmt"
+	"io"
 	"net/http"
-	"io/ioutil"
 )
 
 const baseURL = "https://currencyapi.net/api/v1"
@@ -44,7 +44,7 @@ func (c *ClientS) get(endpoint string, params map[string]string) ([]byte, error)
 	}
 	defer resp.Body.Close()
 
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, err
 	}
