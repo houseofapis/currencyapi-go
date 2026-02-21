@@ -13,7 +13,7 @@ func TestGet(t *testing.T) {
 
 	client := Client("testAPIKey")
 
-	url := "https://currencyapi.net/api/v1/some_endpoint"
+	url := "https://currencyapi.net/api/v2/some_endpoint"
 	jsonResponse := `{"valid": true, "data": "some_data"}`
 
 	gock.New(url).
@@ -51,7 +51,7 @@ func TestRates(t *testing.T) {
 
 	client := Client("testAPIKey")
 
-	url := "https://currencyapi.net/api/v1/rates"
+	url := "https://currencyapi.net/api/v2/rates"
 	jsonResponse := `{"valid": true, "rates": {"USD": 1.0, "EUR": 0.85}}`
 
 	gock.New(url).
@@ -85,7 +85,7 @@ func TestCurrencies(t *testing.T) {
 
 	client := Client("testAPIKey")
 
-	url := "https://currencyapi.net/api/v1/currencies"
+	url := "https://currencyapi.net/api/v2/currencies"
 	jsonResponse := `{"valid": true, "currencies": ["USD", "EUR", "GBP"]}`
 
 	gock.New(url).
@@ -118,7 +118,7 @@ func TestConvert(t *testing.T) {
 
 	client := Client("testAPIKey")
 
-	url := "https://currencyapi.net/api/v1/convert"
+	url := "https://currencyapi.net/api/v2/convert"
 	jsonResponse := `{"valid": true, "result": 85.0}`
 
 	gock.New(url).
@@ -154,7 +154,7 @@ func TestHistory(t *testing.T) {
 
 	client := Client("testAPIKey")
 
-	url := "https://currencyapi.net/api/v1/history"
+	url := "https://currencyapi.net/api/v2/history"
 	jsonResponse := `{"valid": true, "rates": {"2023-10-01": {"USD": 1.0, "EUR": 0.85}, "2023-10-02": {"USD": 1.02, "EUR": 0.84}}}`
 
 	gock.New(url).
@@ -189,7 +189,7 @@ func TestTimeframe(t *testing.T) {
 
 	client := Client("testAPIKey")
 
-	url := "https://currencyapi.net/api/v1/timeframe"
+	url := "https://currencyapi.net/api/v2/timeframe"
 	jsonResponse := `{"valid": true, "rates": {"2023-10-01": {"USD": 1.0, "EUR": 0.85}, "2023-10-02": {"USD": 1.02, "EUR": 0.84}}}`
 
 	gock.New(url).
@@ -220,6 +220,45 @@ func TestTimeframe(t *testing.T) {
 	}
 }
 
+
+func TestOhlc(t *testing.T) {
+	defer gock.Off()
+
+	client := Client("testAPIKey")
+
+	url := "https://currencyapi.net/api/v2/ohlc"
+	jsonResponse := `{"valid": true, "base": "USD", "quote": "EUR", "date": "2023-12-25", "interval": "1d", "ohlc": [{"start": "2023-12-25T00:00:00Z", "open": 0.92, "high": 0.925, "low": 0.918, "close": 0.922}]}`
+
+	gock.New(url).
+		MatchParam("key", "testAPIKey").
+		Reply(200).
+		JSON([]byte(jsonResponse))
+
+	params := map[string]string{
+		"currency": "EUR",
+		"date":     "2023-12-25",
+		"interval": "1d",
+	}
+
+	body, err := client.Ohlc(params)
+	if err != nil {
+		t.Errorf("Error fetching OHLC data: %v", err)
+	}
+
+	var responseMap map[string]interface{}
+	assert.NoError(t, json.Unmarshal(body, &responseMap))
+
+	assert.Equal(t, true, responseMap["valid"], "Expected valid to be true")
+	assert.Equal(t, "USD", responseMap["base"], "Expected base to be USD")
+	assert.Equal(t, "EUR", responseMap["quote"], "Expected quote to be EUR")
+	assert.Equal(t, "2023-12-25", responseMap["date"], "Expected date to match")
+	assert.Equal(t, "1d", responseMap["interval"], "Expected interval to be 1d")
+
+	ohlc, ok := responseMap["ohlc"].([]interface{})
+	if !ok || len(ohlc) != 1 {
+		t.Errorf("Unexpected value for 'ohlc' field")
+	}
+}
 
 func TestClient(t *testing.T) {
 	apiKey := "testAPIKey"

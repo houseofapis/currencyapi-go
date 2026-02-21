@@ -2,15 +2,18 @@
 
 [![Go project version](https://badge.fury.io/go/github.com%2Fhouseofapis%2Fcurrencyapi-go.svg)](https://badge.fury.io/go/github.com%2Fhouseofapis%2Fcurrencyapi-go) [![Coverage Status](https://coveralls.io/repos/github/houseofapis/currencyapi-go/badge.svg?branch=main)](https://coveralls.io/github/houseofapis/currencyapi-go?branch=main) 
 
-<a href="https://currencyapi.net" title="CurrencyApi">CurrencyApi.net</a> provides live currency rates via a REST API. A live currency feed for over 152 currencies, including physical (USD, GBP, EUR + more) and cryptos (Bitcoin, Litecoin, Ethereum + more). A JSON and XML currency api updated every 60 seconds. 
+> **Note:** API v1 is deprecated and will be retired on **31st July 2026**, at which point all v1 traffic will be redirected to v2. This SDK (v2.0.0+) targets API v2. If you are on an older version of this SDK, please upgrade.
+
+<a href="https://currencyapi.net" title="CurrencyApi">CurrencyApi.net</a> provides live currency rates via a REST API. A live currency feed for over 166 currencies, including physical (USD, GBP, EUR + more) and cryptos (Bitcoin, Litecoin, Ethereum + more). A JSON and XML currency api updated every 60 seconds.
 
 Features:
 
 - Live exchange rates (updated every 60 seconds).
-- 152 currencies world currencies.
+- 166 world currencies.
 - Popular cryptocurrencies included; Bitcoin, Litecoin etc.
 - Convert currencies on the fly with the convert endpoint.
 - Historical currency rates back to year 2000.
+- OHLC (Open, High, Low, Close) candlestick data for technical analysis (Tier 3+).
 - Easy to follow <a href="https://currencyapi.net/documentation" title="currency-api-documentation">documentation</a>
 
 Signup for a free or paid account <a href="https://currencyapi.net/#pricing-sec" title="currency-api-pricing">here</a>.
@@ -164,4 +167,29 @@ body, err := client.Timeframe(params)
 | `base` | The base currency you wish you receive the currency conversions for. This will output all currency conversions for that currency. **Default: USD**. |
 | `output` | Response output in either JSON or XML. **Default: JSON**. |
 
+<br>
+
+### OHLC (Open, High, Low, Close):
+
+```golang
+params := map[string]string{
+    "currency": "EUR",
+    "date":     "2023-12-25",
+    "interval": "1h",
+}
+
+body, err := client.Ohlc(params)
+```
+
+**Available params for OHLC endpoint**
+
+| Parameter | Description |
+| --- | --- |
+| `currency` | The target currency code to retrieve OHLC data for (e.g. `EUR`, `GBP`, `BTC`). **Required**. |
+| `date` | The date you wish to retrieve OHLC data for. This should be formatted as YYYY-MM-DD and must be in the past. **Required**. |
+| `base` | The base currency for the pair. **Default: USD**. |
+| `interval` | The time interval for each OHLC candle. Allowed values: `5m`, `15m`, `30m`, `1h`, `4h`, `12h`, `1d`. **Default: 1d**. |
+| `output` | Response output in either JSON or XML. **Default: JSON**. |
+
+> **Note:** The OHLC endpoint requires a Tier 3 (Professional) subscription.
 

@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-const baseURL = "https://currencyapi.net/api/v1"
+const baseURL = "https://currencyapi.net/api/v2"
 
 type ClientS struct {
 	APIKey string
@@ -70,4 +70,8 @@ func (c *ClientS) History(params map[string]string) ([]byte, error) {
 
 func (c *ClientS) Timeframe(params map[string]string) ([]byte, error) {
 	return c.get("timeframe", params)
+}
+
+func (c *ClientS) Ohlc(params map[string]string) ([]byte, error) {
+	return c.get("ohlc", params)
 }
