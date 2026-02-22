@@ -235,7 +235,7 @@ func TestOhlc(t *testing.T) {
 		JSON([]byte(jsonResponse))
 
 	params := map[string]string{
-		"currency": "EUR",
+		"quote":    "EUR",
 		"date":     "2023-12-25",
 		"interval": "1d",
 	}

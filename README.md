@@ -173,7 +173,7 @@ body, err := client.Timeframe(params)
 
 ```golang
 params := map[string]string{
-    "currency": "EUR",
+    "quote":    "EUR",
     "date":     "2023-12-25",
     "interval": "1h",
 }
@@ -185,7 +185,7 @@ body, err := client.Ohlc(params)
 
 | Parameter | Description |
 | --- | --- |
-| `currency` | The target currency code to retrieve OHLC data for (e.g. `EUR`, `GBP`, `BTC`). **Required**. |
+| `quote` | The quote currency code to retrieve OHLC data for (e.g. `EUR`, `GBP`, `BTC`). **Required**. |
 | `date` | The date you wish to retrieve OHLC data for. This should be formatted as YYYY-MM-DD and must be in the past. **Required**. |
 | `base` | The base currency for the pair. **Default: USD**. |
 | `interval` | The time interval for each OHLC candle. Allowed values: `5m`, `15m`, `30m`, `1h`, `4h`, `12h`, `1d`. **Default: 1d**. |
